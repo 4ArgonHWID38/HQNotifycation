@@ -12,7 +12,7 @@ if game.PlaceId == 2534724415 then
     
     wait(3)
     spawn(function()
-    Notification.WallNotification("Argon Hub", "Version 1.0 made by McletsHacks github.com/mcletshacks/ but now sit back and enjoy the menu", {
+    Notification.WallNotification("Argon Hub", "Version 1.0 made by McletsHacks github.com/mcletshacks/", {
     Duration = 5,
     TitleSettings = {
         Enabled = true
@@ -353,6 +353,48 @@ SpecialSection:NewButton("Comming soon", "These teleports coming soon", function
 end)
 
 --Dev
+PlayerSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
+
+    wait(1)
+    if state then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(712.758911, 3.70739913, -467.963623, -0.225708678, -3.16804361e-08, -0.974194825, 1.13039764e-08, 1, -3.51385978e-08, 0.974194825, -1.89433624e-08, -0.225708678) + Vector3.new(0,5,0)
+        local args = {
+            [1] = "Start",
+            [2] = workspace.JobStarters:FindFirstChild("Postal Worker")
+        }
+        
+        game:GetService("ReplicatedStorage").FE.StartJob:InvokeServer(unpack(args))
+
+    wait(1)
+
+    for count = 1, 10 do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(731.328674, 3.70739961, -490.313263, -0.373322487, -6.13480609e-08, -0.927701652, 2.44168508e-08, 1, -7.595483e-08, 0.927701652, -5.10071985e-08, -0.373322487) + Vector3.new(0,5,0)
+        
+        local args = {
+            [1] = workspace.JobTasks:FindFirstChild("Postal Worker Package")
+        }
+        game:GetService("ReplicatedStorage").FE.PickUpPackages:InvokeServer(unpack(args))
+    end
+
+    --1 mail
+    local Mail1 = game.Players.LocalPlayer.Backpack['Mail 1'].HousePosition.Value
+
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail1) + Vector3.new(0,5,0)
+    
+    wait(1)
+    
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail1) + Vector3.new(0,10,0)
+    wait(1)
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v.name == "Mail 4" then
+            v.Parent = game.Players.LocalPlayer.Character
+        end
+    end
+    else
+        wait(1)
+        game.Players.LocalPlayer:Kick("I kicked you to disable AutoFarm Please rejoin")
+    end
+    end)
 
 DevTpSection:NewButton("Copy CFrame", "Copy the CFrame to clipboard", function()
     wait(1)
@@ -361,7 +403,211 @@ DevTpSection:NewButton("Copy CFrame", "Copy the CFrame to clipboard", function()
         Notification.Notify("Argon Hub", "Sucessfull!", "rbxassetid://4914902889");
 end)
 
-elseif game.PlaceId == 3956818381 then
+elseif game.PlaceId == 1537690962 then
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("Ninja Legends", "Sentinel")
+    local Window = Library.CreateLib("Argon Hub Bee-Swarm", "DarkTheme")
+    local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+    local plr = game:GetService("Players").LocalPlayer
+    local plrs = game:GetService("Players")
+    getgenv()["IrisAd"]=true
+
+    spawn(function()
+        Notification.Notify("Argon Hub", "Dedected game is Bee-Swarm Loading...", "rbxassetid://4914902889");
+    end)
+    
+    wait(3)
+
+    spawn(function()
+    Notification.WallNotification("Argon Hub", "Version 1.0 made by McletsHacks github.com/mcletshacks/", {
+    TitleSettings = {
+        Enabled = true
+    }
+})
+end)
+
+    wait(5)
+    spawn(function()
+        Notification.Notify("Argon Hub", "Loading Gui", "rbxassetid://4914902889");
+    end)
+
+    wait(5)
+    spawn(function()
+        Notification.Notify("Argon Hub", "Loaded Version 1.0", "rbxassetid://4914902889");
+    end)
+
+        -- PLAYER
+        local Player = Window:NewTab("Player")
+        local PlayerSection = Player:NewSection("Player")
+        local OtherSection = Player:NewSection("Other")
+    
+        --AutoFarm
+        local Player = Window:NewTab("AutoFarm")
+        local FieldSection = Player:NewSection("Field")
+    
+        --Teleports
+        local Player = Window:NewTab("Teleports")
+        local NormalSection = Player:NewSection("Normal")
+        local ShopsSection = Player:NewSection("Shops")
+    
+        --Dev
+        local Player = Window:NewTab("Dev")
+        local DevTpSection = Player:NewSection("DevTp")
+
+        --Credits
+        local Player = Window:NewTab("Credits")
+        local CreditsSection = Player:NewSection("Gui")
+        local CreditsSection = Player:NewSection("Modules")
+
+        DevTpSection:NewButton("Copy CFrame", "Copy the CFrame to clipboard", function()
+            wait(1)
+                local playerCFrame = "game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = " .. "CFrame.new(" .. tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame) .. ")"
+                setclipboard(playerCFrame)
+                Notification.Notify("Argon Hub", "Sucessfull!", "rbxassetid://4914902889");
+        end)
+    
+        PlayerSection:NewToggle("Inf Jump", "spamm space bar and jump as high as you want", function(state)
+
+            if state then
+            _G.infinjump = true   
+            local Player = game:GetService("Players").LocalPlayer 
+            local Mouse = Player:GetMouse() Mouse.KeyDown:connect(function(k) 
+                if _G.infinjump then if k:byte() == 32 then Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid") 
+                    Humanoid:ChangeState("Jumping") wait(0.1) Humanoid:ChangeState("Seated") 
+                end 
+            end 
+        end)   
+                local Player = game:GetService("Players").LocalPlayer 
+                local Mouse = Player:GetMouse() 
+                Mouse.KeyDown:connect(function(k) k = k:lower() if k == "f" then if _G.infinjump == true then _G.infinjump = false else _G.infinjump = true 
+                end
+             end
+            end)
+        else
+            _G.infinjump = false
+        end
+    end)
+
+        PlayerSection:NewToggle("WalkSpeed", "This will let you walk faster", function (state)
+            if state then
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 150
+            else
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            end
+        if plr.Character.Humanoid.Health == 0 and state then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 150
+        end
+    end)
+
+    FieldSection:NewToggle("AutoFarm Field 1", "Full autorob", function (state)
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51.9234772, 4.3891468, 332.7966, -0.999989033, 9.02080721e-09, -0.00467849569, 9.07045816e-09, 1, -1.0591422e-08, 0.00467849569, -1.06337419e-08, -0.999989033)
+        wait(1)
+        keypress(0x45)
+        wait(0.5)
+        keyrelease(0x45)
+        wait(2)
+        
+        if state then
+
+        for count = 1, 9999999 do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19.2149429, 4.12690639, 200.8367, -0.99834913, -2.41339859e-09, 0.057437513, -2.36206232e-09, 1, 9.61668967e-10, -0.057437513, 8.24410318e-10, -0.99834913)
+                wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    workspace.RebeccaBerry3.Scooper.ClickEvent:FireServer()
+                    wait(1)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-51.9234772, 4.3891468, 332.7966, -0.999989033, 9.02080721e-09, -0.00467849569, 9.07045816e-09, 1, -1.0591422e-08, 0.00467849569, -1.06337419e-08, -0.999989033)
+                    wait(1)
+                    keypress(0x45)
+                    wait(0.5)
+                    keyrelease(0x45)
+                    wait(50)
+            end
+else
+    wait(1)
+    game.Players.LocalPlayer:Kick("I kicked you to disable AutoFarm Please rejoin")
+end
+end)
+
+    NormalSection:NewButton("Field 1", "Teleport you too the 1 field", function ()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30.894125, 4.12690639, 213.748703, -0.0394124836, 8.79937545e-08, -0.999223053, -1.16154695e-08, 1, 8.85203235e-08, 0.999223053, 1.50952495e-08, -0.0394124836)
+    end)
+
+    NormalSection:NewButton("Field 2", "Teleport you too the 2 field", function ()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-52.8375435, 4.12690449, 137.833054, 0.996097565, -9.28727584e-09, -0.0882586837, 5.53435386e-09, 1, -4.27665476e-08, 0.0882586837, 4.21111999e-08, 0.996097565)
+    end)
+    
+    NormalSection:NewButton("Field 3", "Teleport you too the 3 field", function ()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-192.019592, 4.12690449, 167.700974, 0.0780974776, -6.13649007e-08, 0.996945739, -1.16628982e-08, 1, 6.24665333e-08, -0.996945739, -1.6505755e-08, 0.0780974776)
+    end)
+    
+    NormalSection:NewButton("Beehive", "Teleport you too the Beehive", function ()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-88.2325821, 4.12690449, 315.41626, -0.998439968, 1.97665759e-08, -0.0558356643, 1.32596139e-08, 1, 1.16908211e-07, 0.0558356643, 1.15985472e-07, -0.998439968)
+    end)
+    
+    ShopsSection:NewButton("Shop near spawn", "Teleport you too the Shop near the Spawn", function ()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-88.2325821, 4.12690449, 315.41626, -0.998439968, 1.97665759e-08, -0.0558356643, 1.32596139e-08, 1, 1.16908211e-07, 0.0558356643, 1.15985472e-07, -0.998439968)
+    end)
 end
