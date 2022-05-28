@@ -1,0 +1,27 @@
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+getgenv()["IrisAd"]=true
+
+print("Checking!")
+
+spawn(function()
+Notification.WallNotification("Argon Withelist system", "Checking your HWID withe our Databases...", {
+Duration = 5,
+TitleSettings = {
+    Enabled = true
+}
+})
+end)
+
+wait(2)
+
+if HWIDTable == HWID then
+        wait(5)
+        Notification.Notify("Argon Withelist system", "HWID Correct loading script now!", "rbxassetid://4914902889");
+        wait(3)
+        print("your HWID", HWID, "matches the one in our database!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/4ArgonHWID38/HubWl/main/ArgonHubSource.lua"))()
+else
+    print("your HWID", HWID, "not matches the one in our database!")
+    print(HWIDTable)
+end
