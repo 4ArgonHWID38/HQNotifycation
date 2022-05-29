@@ -98,6 +98,27 @@ PlayerSection:NewButton("Instand die", "Kill the LocalPlayer in  1sec", function
     plr.Character.Humanoid.Health = 0
 end)
 
+OtherSection:NewToggle("Moderator Checker", "Kicks if a admin join your game", function (state)
+
+    Notification.Notify("Argon Hub", "Code used for this module from Hrzn", "rbxassetid://4914902889");
+
+    if state then
+    ModChecker = true
+else
+    ModChecker = false
+
+end
+            while ModChecker == true do
+
+                for i,v in pairs (game.Players:GetChildren()) do
+                    if v:GetRankInGroup(GroupId) >= RankRole then
+                        plr:Kick('Moderator is in game, prevented ban.')
+                        print(v.Name)
+                end
+            end
+        end
+end)
+
 OtherSection:NewButton("Get all tools", "Get all criminal tools", function ()
     local oldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-432.881439, 25.0780354, -708.581116, -0.872454941, 8.21081603e-09, -0.488694549, 3.00499536e-08, 1, -3.68459467e-08, 0.488694549, -4.68316763e-08, -0.872454941) + Vector3.new(0,7,0)
@@ -435,6 +456,9 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail1) + Vector3.new(0,7,0)
     wait(1)
+
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail1) + Vector3.new(0,7,0)
+    wait(1)
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v.name == "Mail 1" then
             v.Parent = game.Players.LocalPlayer.Character
@@ -443,7 +467,7 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
 
     wait(1)
     keypress(0x45)
-    wait(0.5)
+    wait(1)
     keyrelease(0x45)
 
     wait(2)
@@ -457,6 +481,9 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail2) + Vector3.new(0,7,0)
     wait(1)
+        
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail2) + Vector3.new(0,7,0)
+    wait(1)
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v.name == "Mail 2" then
             v.Parent = game.Players.LocalPlayer.Character
@@ -465,7 +492,7 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
            
     wait(1)
     keypress(0x45)
-    wait(0.5)
+    wait(1)
     keyrelease(0x45)
 
 
@@ -480,6 +507,9 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail3) + Vector3.new(0,7,0)
     wait(1)
+        
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail3) + Vector3.new(0,7,0)
+    wait(1)
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v.name == "Mail 3" then
             v.Parent = game.Players.LocalPlayer.Character
@@ -488,7 +518,7 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
             
     Wait(2)
     keypress(0x45)
-    wait(0.5)
+    wait(1)
     keyrelease(0x45)
 
  
@@ -503,6 +533,9 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail4) + Vector3.new(0,7,0)
     wait(1)
+        
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mail4) + Vector3.new(0,7,0)
+    wait(1)
     for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
         if v.name == "Mail 4" then
             v.Parent = game.Players.LocalPlayer.Character
@@ -511,7 +544,7 @@ PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
           
     wait(2)
     keypress(0x45)
-    wait(0.5)
+    wait(1)
     keyrelease(0x45)
 
 
