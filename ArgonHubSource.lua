@@ -405,7 +405,7 @@ PostalSection:NewButton("Toggle first time befor farm", "This is a info you shou
   end)
 end)
 
-PostalSection:NewToggle("AutoFarn", "Full Postal Autofarm", function(state)
+PostalSection:NewToggle("AutoFarm", "Full Postal Autofarm", function(state)
 
     Notification.Notify("Argon Hub", "Code used from hrzn autofarm", "rbxassetid://4914902889");
     wait(1)
